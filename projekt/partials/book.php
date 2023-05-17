@@ -1,3 +1,4 @@
+
 <?php require('inc/config.php'); ?>
 <section class="section-padding" id="booking">
                 <div class="container">
@@ -48,32 +49,66 @@
             </section>
 
             </form>
+            <h3 style="padding-left: 20px;">Appointments:</h3>
+            
         <?php
             $appointment = $Appointment->get_appointment();
             echo '<table class="admin-table">';
                 foreach($appointment as $a){
                     echo '<tr>';
-                    echo '<td>'.$a->first_name;'</td>';
-                    echo '<td>'.$a->last_name;'</td>';
-                    echo '<td>'.$a->email;'</td>';
-                    echo '<td>'.$a->phone_number;'</td>';
-                    echo '<td>'.$a->book_date;'</td>';
-                    echo '<td>'.$a->leave_message;'</td>';
-                    echo '<td colspan="4">
-                    <form action="inc/appointment/edit.php" method="post">
-                        <input type="hidden" name="form_id" value="'.$a->ID.'"'.'>
-                        <input type ="text" name="first_name" placeholder="Text otázky"><br>
-                        <input type ="text" name="last_name" placeholder = "Text odpovede"><br>
-                        <input type ="submit" name="update_appointment" value="Zmeň text">
-                    </form>
-                </td>';
+                    echo '<td style="padding-left: 40px;"><strong>First Name:</strong> '.$a->first_name.'</td>';
+                    echo '</tr>';
+                    echo '<tr>';
+                    echo '<td style="padding-left: 40px;"><strong>Last Name:</strong> '.$a->last_name.'</td>';
+                    echo '</tr>';
+                    echo '<tr>';
+                    echo '<td style="padding-left: 40px;"><strong>Email:</strong> '.$a->email.'</td>';
+                    echo '</tr>';
+                    echo '<tr>';
+                    echo '<td style="padding-left: 40px;"><strong>Phone Number:</strong> '.$a->phone_number.'</td>';
+                    echo '</tr>';
+                    echo '<tr>';
+                    echo '<td style="padding-left: 40px;"><strong>Book Date:</strong> '.$a->book_date.'</td>';
+                    echo '</tr>';
+                    echo '<tr>';
+                    echo '<td style="padding-left: 40px;"><strong>Leave Message:</strong> '.$a->leave_message.'</td>';
+                    echo '</tr>';
+                    echo '</tr>';
+                    echo '<td style="padding-left: 40px;">';
+                    echo '<form action="inc/appointment/delete.php" method="post">';
+                    echo '<button type="submit" name="delete_appointment" value="' . $a->ID . '">Vymazať</button>';
+                    echo '</form>';
+                    echo '</td>';
+                
+                    echo '</tr>';
                     
-                    echo '<td>
-                            <form action="inc/appointment/delete.php" method="post">
-                                <button type = "submit" name="delete_appointment" value="'.$a->ID.'"'.'>Vymazať</button>
-                            </form>';
-                echo '</tr>';
-                }
-                echo '</table>';
+                    
+                    
+                   
+
+                    echo '<table>';
+                     echo '<h4 style="padding-left: 20px; margin-top: 20px; ">Change details:</h4>';
+                        echo '<tr>';
+                        echo '<td colspan="4" style="padding-left: 40px;" >';
+                        echo '<form action="inc/appointment/edit.php" method="post">';
+                        echo '<input type="hidden" name="form_id" value="' . $a->ID . '">';
+                        echo '<input type="text" name="first_name" placeholder="First name"><br>';
+                        echo '<input type="text" name="last_name" placeholder="Last name"><br>';
+                        echo '<input type="text" name="email" placeholder="E-mail"><br>';
+                        echo '<input type="text" name="phone_number" placeholder="Phone number"><br>';
+                        echo '<input type="date" name="book_date" placeholder="Date"><br>';
+                        echo '<textarea name="leave_message" placeholder="Your message"></textarea><br>';
+                        echo '<input type="submit" name="update_appointment" style="margin-bottom: 20px;"value="Zmeň text">';
+                        echo '<hr style="width: 100%; border: 1px solid blacks;">';
+                        echo '</form>';
+                        echo '</td>';
+                        echo '</tr>';
+                        
+
+                    }
+                    
+                    echo '</table>';
+                    
+                    
         ?>
         </main>
